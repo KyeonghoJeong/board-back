@@ -31,5 +31,37 @@ public class BoardServiceImpl implements BoardService {
 	
 		return postsDto;
 	}
+
+	@Override
+	public BoardDto getPost(Long id) {
+		// TODO Auto-generated method stub
+		BoardEntity postEntity = boardDao.getPost(id);
+		
+		BoardDto postDto = modelMapper.map(postEntity, BoardDto.class);
+		
+		return postDto;
+	}
+
+	@Override
+	public void postPost(BoardDto boardDto) {
+		// TODO Auto-generated method stub
+		BoardEntity boardEntity = modelMapper.map(boardDto, BoardEntity.class);
+		
+		boardDao.postPost(boardEntity);
+	}
+
+	@Override
+	public void putPost(BoardDto boardDto) {
+		// TODO Auto-generated method stub
+		BoardEntity boardEntity = modelMapper.map(boardDto, BoardEntity.class);
+		
+		boardDao.putPost(boardEntity);
+	}
+	
+	@Override
+	public void deletePost(Long id) {
+		// TODO Auto-generated method stub
+		boardDao.deletePost(id);
+	}
 	
 }

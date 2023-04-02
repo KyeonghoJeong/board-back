@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import lombok.Getter;
@@ -16,15 +17,19 @@ import lombok.ToString;
 @Entity
 public class BoardEntity {
 
-	@Column(name = "ID")
+	@GeneratedValue(strategy = GenerationType.IDENTITY, generator = "board_seq")
+	@SequenceGenerator(name = "board_seq", sequenceName = "tpinfo_seq", allocationSize = 1)
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	@Column(name = "ID")
+	private Long id;
 	
 	@Column(name = "TITLE")
 	private String title;
 	
 	@Column(name = "WRITER")
 	private String writer;
+	
+	@Column(name = "CONTENT")
+	private String content;
 	
 }
